@@ -1,0 +1,33 @@
+# Store normalized text as LF; use LF on all platforms unless overridden.
+* text=auto eol=lf
+
+# Windows command scripts require CRLF in the working tree.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=lf
+*.sh text eol=lf
+mvnw text eol=lf
+gradlew text eol=lf
+
+# Never normalize binary assets or reviewed binary fixtures.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.pdf binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.jar binary
+*.war binary
+*.zip binary
+*.gz binary
+*.7z binary
+*.[xX][lL][sS][xX] binary
+*.[xX][lL][sS] binary
+*.[xX][lL][sS][mM] binary
+*.[xX][lL][sS][bB] binary
+*.[oO][dD][sS] binary
+*.[pP][aA][rR][qQ][uU][eE][tT] binary

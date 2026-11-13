@@ -1,0 +1,5 @@
+title = "VendorMargin secret scanning"
+
+# Preserve all built-in rules. Do not blanket-allowlist docs, skills or fixtures.
+[extend]
+useDefault = true

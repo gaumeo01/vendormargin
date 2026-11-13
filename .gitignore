@@ -1,0 +1,215 @@
+# Filename protection is not content inspection. Review and scan staged files.
+# Never force-add an ignored file without explicit approval.
+
+# Environment secrets; examples must contain placeholders only.
+.env
+.env.*
+*.env
+*.env.*
+.envrc
+!.env.example
+!.env.*.example
+!*.env.example
+
+# Credential stores, keys and certificates (including public certs by default).
+.aws/
+.ssh/
+.azure/
+.config/gcloud/
+secrets/
+credentials/
+*.[pP][eE][mM]
+*.[kK][eE][yY]
+*.[pP]12
+*.[pP][fF][xX]
+*.[jJ][kK][sS]
+*.keystore
+*.[cC][rR][tT]
+*.[cC][eE][rR]
+*.[dD][eE][rR]
+id_rsa*
+id_ed25519*
+credentials.json
+credentials.xml
+service-account*.json
+service_account*.json
+*-credentials.json
+passwords.txt
+passwords.json
+tokens.txt
+tokens.json
+api-keys.*
+jwt-secret.*
+.netrc
+_netrc
+.npmrc
+.pypirc
+.git-credentials
+.m2/
+settings-security.xml
+settings.xml
+!**/src/**/settings.xml
+
+# Spring profile files are private by default. Keep application.yml/properties
+# with environment placeholders; profile examples must use placeholders too.
+application-*.yml
+application-*.yaml
+application-*.properties
+bootstrap-*.yml
+bootstrap-*.yaml
+bootstrap-*.properties
+!application-*.example.yml
+!application-*.example.yaml
+!application-*.example.properties
+!bootstrap-*.example.yml
+!bootstrap-*.example.yaml
+!bootstrap-*.example.properties
+# Test configuration is source, not a place for real credentials.
+!**/src/test/resources/application-test.yml
+!**/src/test/resources/application-test.yaml
+!**/src/test/resources/application-test.properties
+compose.override.yml
+compose.override.yaml
+docker-compose.override.yml
+docker-compose.override.yaml
+
+# Database dumps/backups/volumes. SQL migrations and schema source stay visible.
+*.dump
+*.pgdump
+*.backup
+*.bak
+*.sql.gz
+*.sql.zip
+*.sql.xz
+*.sql.bz2
+*dump*.sql
+*backup*.sql
+# Reviewed Flyway migration source must remain visible even when its name
+# mentions a dump or backup. Never put an actual database dump in this path.
+!**/src/main/resources/db/migration/**/*.sql
+*.db
+*.sqlite
+*.sqlite3
+*.db-wal
+*.db-shm
+pgdata/
+postgres-data/
+postgres-volume/
+db-data/
+/volumes/
+.postgres/
+backups/
+dumps/
+
+# Store actual POS/supplier/customer/financial data only in private paths.
+# These directory rules also cover JSON, PDF, images and archives inside them.
+private-data/
+real-data/
+pos-exports/
+supplier-invoices/
+customer-data/
+financial-data/
+uploads/
+data/raw/
+data/private/
+imports/raw/
+/exports/
+*invoice*.[pP][dD][fF]
+*receipt*.[pP][dD][fF]
+
+# Business datasets are excluded everywhere unless in reviewed fixture paths.
+*.[cC][sS][vV]
+*.[tT][sS][vV]
+*.[xX][lL][sS]
+*.[xX][lL][sS][xX]
+*.[xX][lL][sS][mM]
+*.[xX][lL][sS][bB]
+*.[oO][dD][sS]
+*.[pP][aA][rR][qQ][uU][eE][tT]
+
+# Narrow data exceptions; naming a directory 'sanitized' is NOT sanitization.
+# No exceptions for keys, secrets, dumps, macros or private directories.
+!/test-fixtures/synthetic/**/*.csv
+!/test-fixtures/synthetic/**/*.tsv
+!/test-fixtures/synthetic/**/*.xlsx
+!/test-fixtures/sanitized/**/*.csv
+!/test-fixtures/sanitized/**/*.tsv
+!/test-fixtures/sanitized/**/*.xlsx
+!/examples/synthetic/**/*.csv
+!/examples/synthetic/**/*.tsv
+!/examples/synthetic/**/*.xlsx
+!/examples/sanitized/**/*.csv
+!/examples/sanitized/**/*.tsv
+!/examples/sanitized/**/*.xlsx
+!/backend/src/test/resources/fixtures/synthetic/**/*.csv
+!/backend/src/test/resources/fixtures/synthetic/**/*.tsv
+!/backend/src/test/resources/fixtures/synthetic/**/*.xlsx
+!/backend/src/test/resources/fixtures/sanitized/**/*.csv
+!/backend/src/test/resources/fixtures/sanitized/**/*.tsv
+!/backend/src/test/resources/fixtures/sanitized/**/*.xlsx
+
+# Java/Maven/Gradle outputs; do not ignore .mvn or wrapper source/scripts.
+target/
+build/
+out/
+.gradle/
+*.class
+*.jar
+*.war
+*.ear
+!**/.mvn/wrapper/maven-wrapper.jar
+!**/gradle/wrapper/gradle-wrapper.jar
+.mvn/timing.properties
+hs_err_pid*
+replay_pid*
+*.hprof
+
+# Node/React/Vite outputs. package manifests and lockfiles remain trackable.
+node_modules/
+dist/
+.vite/
+.cache/
+.turbo/
+.next/
+coverage/
+*.tsbuildinfo
+playwright-report/
+test-results/
+blob-report/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-store/
+
+# IDE and local editor state.
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.classpath
+.project
+.settings/
+.factorypath
+.metadata/
+.history/
+
+# Logs, temporary files and scan reports may contain sensitive data.
+logs/
+*.log
+tmp/
+temp/
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+.security-reports/
+gitleaks-report.*
+
+# OS-generated files.
+.DS_Store
+._*
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
